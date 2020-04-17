@@ -1,0 +1,33 @@
+<!--
+    journalist-new.html
+
+    - Enforce character limits
+-->
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="heading-group">
+        <h2>Lägg till ny journalist</h2>
+    </div>
+    <article class="full-article">
+        <form action="/journalist/new" method="POST">
+            <div class="fieldset">
+                <label for="name">Namn</label>
+                <input type="text" name="name" id="name" maxlength="50" required>
+            </div>
+            <div class="fieldset">
+                <label for="pnr">Personnummer</label>
+                <input type="text" name="pnr" id="pnr" minlength="12" maxlength="12" required>
+            </div>
+            <div class="fieldset">
+                <label for="note">Anteckning</label>
+                <textarea name="note" id="note" placeholder="Skriv en anteckning om journalisten här..."></textarea>
+            </div>
+            <br>
+            <div class="button-group">
+                <button type="submit" name="submit" class="save-button">Spara</button>
+            </div>
+        </form>
+    </article>
+
+{% endblock %}

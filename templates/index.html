@@ -1,0 +1,26 @@
+<!--
+    index.html
+-->
+{% extends "base.html" %}
+
+{% block main %}
+
+	<div class="heading-group">
+		<h2>Artiklar</h2>
+		<a href="{{ url_for('new_article') }}"><button class="add-button">Lägg till ny artikel</button></a>
+	</div>
+
+	<div class="article-list">
+		{% for i in articles %}
+			<article class="list-article">
+				<div class="pre-headline-info">
+					<p class="published">{{ i.published }}</p>
+				</div>
+				<h2><a href="/article/{{ i.id }}/" class="list-link">{{ i.headline }}</h2></a>
+				<p class="preamble">{{ i.preamble }}</p>
+				<a href="/article/{{ i.id }}" class="link-a"><button class="link-button">Läs mer</button></a>
+			</article> <!-- /.list-article -->
+		{% endfor %}
+	</div> <!-- /.article-list -->
+
+{% endblock %}

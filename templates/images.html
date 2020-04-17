@@ -1,0 +1,27 @@
+<!--
+    images.html
+
+    [ ] - Add "published" in database
+-->
+{% extends "base.html" %}
+
+{% block main %}
+
+    <div class="heading-group">
+        <h2>Bildgalleri</h2>
+        <a href="{{ url_for('new_image') }}"><button class="add-button">Lägg till ny bild</button></a>
+    </div>
+    
+    <div class="images-grid">
+        {% for i in images %}
+            <article class="images-grid-card">
+                <img src="{{ i[1] }}" alt="{{ i[2] }}">
+                <h3>{{ i[2] }}</h3>
+                <p><span class="images-grid-card-title">ID:</span> {{ i[0] }}</p>
+                <p><span class="images-grid-card-title">Publicerad:</span> {{ i[3] }}</p>
+                <a href="/image/{{ i[0] }}/delete" class="link-a" onclick="return confirm('Är du säker på att du vill radera denna bild? Den tas också bort från samtliga artiklar som den används i.')"><button class="delete-button">Ta bort</button></a>
+            </article> <!-- /.images-grid-card -->
+        {% endfor %}
+    </div> <!-- /.images-grid -->   
+
+{% endblock %}

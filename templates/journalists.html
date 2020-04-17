@@ -1,0 +1,22 @@
+<!--
+    journalists.html
+
+    - Don't show pnr or note, as per instructions
+-->
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="heading-group">
+        <h2>Journalister</h2>
+        <a href="/journalist/new"><button class="add-button">Lägg till ny journalist</button></a>
+    </div>
+
+    <div class="article-list journalists">    
+        {% for i in journalists %}
+            <article class="list-article">
+                <h3><a href="/journalist/{{ i[0] }}">{{ i[1] }}</a></h3>
+            </article>
+        {% endfor %}
+    </div>
+
+{% endblock %}

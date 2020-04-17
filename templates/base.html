@@ -1,0 +1,49 @@
+<!--
+    base.html
+-->
+<!DOCTYPE html>
+<html lang="sv">
+	<head>
+        <title>
+            {% if title %}
+                {{ title }} | Mörtfors Dagblad
+            {% else %}
+                Mörtfors Dagblad
+            {% endif %}
+		</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	</head>
+
+	<body>
+		<div id="wrapper">
+
+			<header>
+				<h1><a href="/">Mörtfors Dagblad</a></h1>
+			</header>
+
+			<nav>
+				<ul>
+					<li><a href="{{ url_for('index') }}">Artiklar</a></li>
+					<li><a href="{{ url_for('images') }}">Bildgalleri</a></li>
+					<li><a href="{{ url_for('journalists') }}">Journalister</a></li>
+				</ul>
+			</nav>
+
+			<main>
+                {% block main %}
+                
+                {% endblock %}
+			</main>
+
+			<footer>
+			</footer>
+
+		</div> <!-- /#wrapper -->
+
+		<script src="//code.jquery.com/jquery.min.js"></script>
+	</body>
+</html>

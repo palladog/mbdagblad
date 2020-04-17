@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+:root {
+    /* Color */
+    --white: white;
+    --black: black;
+    --gray: #505050;
+    --light-gray: #B8B8B8;
+    --red: red;
+    --green: green;
+    
+    /* Font */
+    --font: 'Montserrat', sans-serif;
+    --font-regular: 400;
+    --font-bold: 700;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font);
+    font-weight: var(--font-regular);
+}
+
+
+/***************************************/
+/*            TEXT ELEMENTS            */
+/***************************************/
+
+/* Generic text elements */
+h1 {
+    font-weight: var(--font-bold);
+    font-size: 2.5rem;
+}
+
+h1 a,
+h2 a,
+h3 a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+h1 a:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    font-weight: var(--font-bold);
+}
+
+h3 a:hover {
+    text-decoration: underline;
+}
+
+p {
+    line-height: 1.5;
+}
+
+/* Navigation text elements (base.html) */
+nav a {
+    color: var(--black);
+    font-weight: var(--font-bold);
+    margin: 0 0.5em;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+nav a:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+button, 
+nav a{
+    border: 2px solid black;
+    padding: 0.5em 1em;
+    font-weight: var(--font-bold);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button { background-color: var(--white);}
+
+/* Article List (index.html) */
+.list-link {
+    color: var(--black);
+    text-decoration: none;
+}
+
+.list-link:hover {
+    text-decoration: underline;
+}
+
+/* Article (article.html) */
+.published { color: var(--gray); }
+.preamble { 
+    font-size: 1.3rem;
+    margin: 0.5em 0 1em 0; 
+}
+
+.article-image p {
+    color: var(--gray);
+    font-style: italic;
+    margin-top: 0.5em;
+}
+
+.authors {
+    display: flex;
+    list-style: none;
+    align-items: flex-start;
+}
+
+#pen {
+    margin-top: 1px;
+    width: 1rem;
+}
+
+.authors li a {
+    color: var(--gray);
+    text-decoration: none;
+}
+
+.authors li a:hover {
+    text-decoration: underline;
+}
+
+.authors li:not(:last-child) {
+    margin-right: 1em;
+}
+
+.save-button {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.save-button:hover {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.delete-button:hover {
+    border-color: var(--red);
+    background-color: var(--red);
+    color: var(--white);
+}
+
+
+
+
+/***************************************/
+/*              CONTAINERS             */
+/***************************************/
+
+/* Container */
+div,
+section,
+article {
+    margin: 1em 0;
+}
+
+#wrapper > * {
+    margin: 2em 0;
+}
+
+/* Header (base.html) */
+header {
+    text-align: center;
+}
+
+/* Navigation (base.html) */
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+/* Article List (index.html) */
+
+.article-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.list-article {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 1.5em 1em;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin: 1em 0.5em;
+    min-width: 200px;
+    max-width: 350px;
+}
+
+.list-article:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.link-a{
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.link-button,
+.add-button,
+.delete-button,
+.save-button { transition: all 0.3s cubic-bezier(.25,.8,.25,1); }
+
+.link-button:hover,
+.add-button:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+/* Article (article.html) */
+article {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding: 1.5em 1em 1em 1em;
+    margin: 0 auto;
+}
+
+.full-article {
+    padding: 2em;
+    width: 80%;
+}
+
+.heading-group {
+    text-align: center;
+}
+
+.heading-group * {
+    margin-top: 2em;
+}
+
+.article-image {
+    border-bottom: 1px solid var(--light-gray);
+    padding-bottom: 1em;
+}
+
+.article-image img {
+    width: 100%;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-group-article {
+    justify-content: space-between;
+    margin-top: 3em;
+}
+
+
+/* Comments (article.html) */
+.comment-section {
+    margin: 7em auto 0 auto;
+    max-width: 700px;
+}
+
+.comment {
+    display: grid;
+    grid-template-columns: auto 10px;
+    
+    border: 2px solid var(--black);
+    min-height: 50px;
+    padding: 1em;
+}
+
+.comment p {
+    grid-column: 1;
+}
+
+.comment-author {
+    font-weight: var(--font-bold);
+}
+
+.comment-timestamp,
+.images-grid-card-title {
+    color: var(--gray);
+    font-weight: var(--font-bold);
+}
+
+.comment a {  
+    grid-column: 2;
+    margin-top: -52px;
+}
+
+
+/* Forms */
+#comment-form {
+    padding-top: 2em;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.fieldset {
+
+}
+
+.fieldset > * {
+    display: block;
+}
+
+.fieldset > label {
+    font-weight: var(--font-bold);
+    font-size: 1.25rem;
+    margin-bottom: 0.5em;
+}
+
+.fieldset input[type="text"],
+.fieldset select,
+.fieldset textarea {
+    border: 2px solid var(--black);
+    min-height: 40px;
+    width: 100%;
+}
+
+.fieldset textarea,
+.fieldset select,
+.fieldset input[type="text"] {
+    color: var(--gray);
+    padding: 1em;
+    font-size: 1rem;
+    overflow: auto;
+}
+
+#headline,
+#signature,
+#name,
+#pnr,
+#url {
+    padding: 0.5em;
+}
+
+
+/* Image Gallery */
+
+.images-grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.images-grid-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    padding: 1.5em 1em;
+    margin: 1em 0.5em;
+    min-width: 200px;
+    max-width: 350px;
+    height: max-content;
+}
+
+.images-grid-card img {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.images-grid-card button {
+    margin-top: 1.5em;
+}
+
+/* Journalists (journalists.html) */
+.journalists {
+    text-align: center;
+}
+
+/***************************************/
+/*                    */
+/***************************************/

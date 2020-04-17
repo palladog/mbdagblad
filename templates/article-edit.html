@@ -1,0 +1,69 @@
+<!--
+    article-edit.html
+
+    - max char 100 on headline and signature
+    - not able to submit unless there is content in all fields
+-->
+
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="heading-group">
+        <h2>Redigera en artikel</h2>
+    </div>
+    <article class="full-article">
+        <form action="/article/{{ article[0] }}/edit" method="POST">
+            <div class="fieldset">
+                <label for="authors">Författare</label>
+                <select name="journalists" id="journalists" multiple required>
+                    {% for i in journalists %}
+                        {% if i[0] in authors %}
+                            <option value="{{ i[0] }}" selected>{{ i[1] }}</option>
+                        {% else %}
+                            <option value="{{ i[0] }}">{{ i[1] }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="fieldset">
+                <label for="headline">Rubrik</label>
+                <input type="text" name="headline" id="headline" value="{{ article[1] }}" maxlength="100" required>
+            </div>
+            <div class="fieldset">
+                <label for="preamble">Ingress</label>
+                <textarea name="preamble" id="preamble" rows="5">{{ article[2] }}</textarea>
+            </div>
+            <div class="fieldset">
+                <label for="body">Brödtext</label>
+                <textarea name="body" id="body" rows="10" required>{{ article[3] }}</textarea>
+            </div>
+            <div class="fieldset">
+                <br>
+                <p>Ladda upp och leta bilder i <a href="/images">bildgalleriet</a>.</p>
+                <br>
+                <label for="image_id">Bild-ID</label>
+                <select name="image_id" id="image_id">
+                    <option value="" {% if article_image|length == 0 %}selected{% endif %}></option>
+                    {% for i in images %}
+                        {% if i[0] in article_image[0] %}
+                            <option value="{{ i[0] }}" selected>{{ i[0] }}: {{ i[1] }}</option>
+                        {% else %}
+                            <option value="{{ i[0] }}">{{ i[0] }}: {{ i[1] }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="fieldset">
+                <label for="caption">Bildtext</label>
+                <textarea name="caption" id="caption">{% if article_image %}{{ article_image[0][2] }}{% endif %}</textarea> 
+            </div>
+
+            <div class="button-group button-group-article">
+                <a href="/article/{{ article[0] }}"><button class="link-button">Avbryt</button></a>
+                <button type="submit" name="submit" class="save-button">Spara</button>
+            </div>
+            
+        </form>
+    </article>
+
+{% endblock %}

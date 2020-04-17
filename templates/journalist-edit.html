@@ -1,0 +1,35 @@
+<!--
+    journalist-edit.html
+
+    - Enforce character limits
+-->
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="heading-group">
+        <h2>Lägg till ny journalist</h2>
+    </div>
+    <article class="full-article">
+        <form action="/journalist/{{ journalist[0] }}/edit" method="POST">
+            <div class="fieldset">
+                <label for="name">Namn</label>
+                <input type="text" name="name" id="name" value="{{ journalist[2] }}" maxlength="50" required>
+            </div>
+            <div class="fieldset">
+                <label for="pnr">Personnummer (12 siffror)</label>
+                <input type="text" name="pnr" id="pnr" value="{{ journalist[1] }}" minlength="12" maxlength="12" required>
+            </div>
+            <div class="fieldset">
+                <label for="note">Anteckning</label>
+                <textarea name="note" id="note">{{ journalist[3] }}</textarea>
+            </div>
+
+            <div class="button-group">
+                <a href="/journalist/{{ journalist[0] }}"><button class="link-button">Avbryt</button></a>
+                <button type="submit" name="submit" class="save-button">Spara</button>
+            </div>
+            
+        </form>
+    </article>
+
+{% endblock %}

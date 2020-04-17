@@ -1,0 +1,59 @@
+<!--
+    article-new.html
+
+    - max char 100 on headline and signature
+    - not able to submit unless there is content in all fields
+-->
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="heading-group">
+        <h2>Publicera en ny artikel</h2>
+    </div>
+    <article class="full-article">
+        <form action="/article/new" method="POST">
+            <div class="fieldset">
+                <label for="authors">Författare</label>
+                <select name="journalists" id="journalists" multiple required>
+                    {% for i in journalists %}
+                        <option value="{{ i[0] }}">{{ i[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="fieldset">
+                <label for="headline">Rubrik</label>
+                <input type="text" name="headline" id="headline" maxlength="100" required>
+            </div>
+            <div class="fieldset">
+                <label for="preamble">Ingress</label>
+                <textarea name="preamble" id="preamble" placeholder="Skriv ingressen här" required></textarea>
+            </div>
+            <div class="fieldset">
+                <label for="body">Brödtext</label>
+                <textarea name="body" id="body" placeholder="Skriv brödtexten här" required></textarea>
+            </div>
+            <div class="fieldset">
+                <br>
+                <p>Ladda upp och leta bilder i <a href="/images">bildgalleriet</a>.</p>
+                <br>
+                <label for="image_id">Bild-ID</label>
+                <select name="image_id" id="image_id">
+                    <option value="" selected>Ingen bild</option>
+                    {% for i in images %}
+                        <option value="{{ i[0] }}">{{ i[0] }}: {{ i[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="fieldset">
+                <label for="caption">Bildtext</label>
+                <input type="text" name="caption" id="caption">
+            </div>
+
+            <br>
+            <div class="button-group">
+                <button type="submit" name="submit" class="save-button">Publicera</button>
+            </div>
+        </form>
+    </article>
+
+{% endblock %}

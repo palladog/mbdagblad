@@ -1,0 +1,36 @@
+<!--
+    journalist.html
+
+    - Don't show pnr or note, as per instructions
+-->
+
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="heading-group">
+        <h2>{{ journalist[1] }}</h2>
+        <a href="/journalist/{{ journalist[0] }}/delete" onclick="return confirm('Är du säker på att du vill radera denna journalist? Journalistens namn tas bort från samtliga författade artiklar.')"><button class="delete-button">Ta bort</button></a>
+    <a href="/journalist/{{ journalist[0] }}/edit"><button class="link-button">Redigera</button></a>
+        {% if articles|length %}
+            <p>Författade artiklar: {{ articles|length }} </p>
+        {% else %}
+            <p>Journalisten har inte författat några artiklar än.</p>
+        {% endif %}
+    </div>
+
+    {% if articles|length %}
+        <div class="article-list">
+            {% for i in articles %}
+                <article class="list-article">
+                    <div class="pre-headline-info">
+                        <p class="published">{{ i[3] }}</p>
+                    </div>
+                    <h3><a href="/article/{{ i[0] }}/" class="list-link">{{ i[1] }}</a></h3>
+                    <a href="/article/{{ i[0] }}" class="link-a"><button class="link-button">Läs mer</button></a>
+                </article>
+            {% endfor %}
+        </div>
+    {% endif %}    
+</article>
+
+{% endblock %}

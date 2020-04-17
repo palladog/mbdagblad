@@ -1,0 +1,75 @@
+<!--
+    article.html
+-->
+{% extends "base.html" %}
+
+{% block main %}
+
+<article class="full-article">
+    <div class="button-group button-group-article">
+        <a href="/article/{{ article[0] }}/delete" onclick="return confirm('Är du säker på att du vill radera denna artikel? Alla kommentarer tas även bort.')"><button class="delete-button">Ta bort</button></a>
+        <a href="/article/{{ article[0] }}/edit"><button class="link-button">Redigera</button></a>
+    </div>
+
+        {% if images %}
+            {% for i in images %}
+            <div class="article-image">
+                <img src="{{ i[0] }}" alt="{{ i[1] }}">
+                <p>{{ i[2] }}</p>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="pre-headline-info">
+            <p class="published">{{ article[4] }}</p>
+        </div>
+
+        <h1>{{ article[1] }}</h1>
+        <div class="post-headline-info">
+            {% if authors|length %}
+            <ul class="authors">
+                <li><img src="{{ url_for('static', filename='pen.png') }}" alt="Penna" id="pen"></li>
+                {% for i in authors %}
+                    <li><a href="/journalist/{{ i[0] }}">{{ i[1] }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <p class="preamble">{{ article[2] }}</p>
+        <p class="body-text">{{ article[3] }}</p>
+
+        <section class="comment-section">
+            {% if comments|length %}
+            <h2>Kommentarer</h2>
+                {% for i in comments %}
+                    <div class="comment">
+                        <p><span class="comment-author">{{ i[1] }}</span> <span class="comment-timestamp">({{ i[2] }})</span></p>
+                        <p>{{ i[3] }}</p>
+                        <a href="/article/{{ article[0] }}/comment/{{ i[0] }}/delete" onclick="return confirm('Är du säker på att du vill radera kommentaren?')"><button>x</button></a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+        
+
+        <form action="/article/{{ article[0] }}/comments" method="POST" id="comment-form">
+            <h2>Skriv en kommentar</h2>
+            <div class="fieldset">
+                <label for="signature">Signatur</label>
+                <input type="text" name="signature" id="signature" max="40" required>
+            </div>
+            <div class="fieldset">
+                <label for="text">Text</label>
+                <textarea name="text" id="text" rows="6" placeholder="Skriv din kommentar här..."></textarea>
+            </div>
+            <br>
+            <div class="button-group">
+                <button type="submit" name="submit" class="save-button">Skicka</button>
+            </div>
+        </form>
+
+</article>
+
+{% endblock %}
+

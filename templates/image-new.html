@@ -1,0 +1,28 @@
+<!--
+    image-new.html
+-->
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="heading-group">
+        <h2>Publicera en ny bild</h2>
+    </div>
+    <article class="full-article">
+        <form action="/image/new" method="POST">
+            <div class="fieldset">
+                <label for="url">URL</label>
+                <input type="text" name="url" id="url">
+            </div>
+            <div class="fieldset">
+                <label for="alt">Bildbeskrivning (alt-text)</label>
+                <input type="text" name="alt" id="alt">
+            </div>
+
+            <br>
+            <div class="button-group">
+                <button type="submit" name="submit" class="save-button">Publicera</button>
+            </div>
+        </form>
+    </article>
+
+{% endblock %}
